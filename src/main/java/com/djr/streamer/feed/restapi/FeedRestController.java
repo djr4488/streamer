@@ -1,9 +1,12 @@
 package com.djr.streamer.feed.restapi;
 
+import com.djr.streamer.jms.JMSStream;
+import com.djr.streamer.jms.StreamBean;
+import org.slf4j.Logger;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.InputStream;
 
 /**
@@ -12,14 +15,16 @@ import java.io.InputStream;
 @Path("feed")
 @ApplicationScoped
 public class FeedRestController {
+	@Inject
+	private Logger log;
+	@Inject
+	private JMSStream jmsStream;
+
     @Path("input")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    @Produces(MediaType.APPLICATION_JSON)
     @POST
-    public Response inputStream(@FormParam("inputStream") InputStream inputStream, @FormParam("uuid") String uuid) {
-        //put on jms queue for listeners using uuid as the identifier for stream
-        //if no listeners, the message just goes away(no persistence)
-        //return ok that we got it
-        return Response.ok().build();
+    public void inputStream(String uuid, String location, InputStream inputStream) {
+		log.debug("inputStream() uuid:{}", uuid);
+	    jmsStream.sendToQueue(new StreamBean(uuid, location, inputStream));
     }
 }
