@@ -24,7 +24,7 @@ public class FeedRestController {
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
     @POST
     public void inputStream(String uuid, String location, InputStream inputStream) {
-		log.debug("inputStream() uuid:{}", uuid);
+		log.info("inputStream() uuid:{}", uuid);
 	    jmsStream.sendToQueue(new StreamBean(uuid, location, inputStream));
     }
 }
