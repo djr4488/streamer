@@ -15,11 +15,13 @@ import java.io.Serializable;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class LoginResponse implements Serializable {
+public class  LoginResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@XmlElement
 	public String uuid;
+	@XmlElement
+	public boolean loginRequired;
 
 	public boolean equals(Object o) {
 		return EqualsBuilder.reflectionEquals(this, o);
