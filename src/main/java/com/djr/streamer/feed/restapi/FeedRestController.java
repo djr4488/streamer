@@ -20,11 +20,11 @@ public class FeedRestController {
 	@Inject
 	private JMSStream jmsStream;
 
-    @Path("input")
-    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    @POST
-    public void inputStream(String uuid, String location, InputStream inputStream) {
+	@Path("input")
+	@Consumes(MediaType.APPLICATION_OCTET_STREAM)
+	@POST
+	public void inputStream(String uuid, String location, InputStream inputStream) {
 		log.info("inputStream() uuid:{}", uuid);
-	    jmsStream.sendToQueue(new StreamBean(uuid, location, inputStream));
-    }
+		jmsStream.sendToQueue(new StreamBean(uuid, location, inputStream));
+	}
 }

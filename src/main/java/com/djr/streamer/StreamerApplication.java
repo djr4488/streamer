@@ -15,9 +15,9 @@ import java.util.Set;
  */
 @ApplicationPath("/api")
 public class StreamerApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList(FeedRestController.class, ViewRestController.class,
-		        AuthRestController.class));
-    }
+	@Override
+	public Set<Class<?>> getClasses() {
+		return new HashSet<Class<?>>(Arrays.asList(FeedRestController.class, ViewRestController.class,
+				AuthRestController.class));
+	}
 }
