@@ -3,6 +3,7 @@ package com.djr.streamer.auth.restapi;
 import com.djr.streamer.auth.model.LoginRequest;
 import com.djr.streamer.auth.model.LoginResponse;
 import com.djr.streamer.auth.service.ActiveUuidService;
+import com.djr.streamer.auth.service.AuthService;
 import org.slf4j.Logger;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -22,15 +23,16 @@ public class AuthRestController {
 	@Inject
 	private Logger log;
 	@Inject
-	private ActiveUuidService activeUuidService;
+	private AuthService authService;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("login")
-	public Response login(LoginRequest loginRequest, @Context HttpServletRequest request) {
+	public Response login(LoginRequest loginRequest) {
 		LoginResponse loginResponse = new LoginResponse();
-		//TODO: add database and JPA entities
+		loginResponse.loginRequired = false;
+		loginResponse.uuid = authService.doLogin(loginRequest);
 		return Response.ok().entity(loginResponse).build();
 	}
 }
