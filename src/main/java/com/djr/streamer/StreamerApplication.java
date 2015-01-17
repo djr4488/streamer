@@ -1,7 +1,7 @@
 package com.djr.streamer;
 
 import com.djr.streamer.auth.restapi.AuthRestController;
-import com.djr.streamer.feed.restapi.FeedRestController;
+import com.djr.streamer.feed.websocket.FeedWebsocketController;
 import com.djr.streamer.view.restapi.ViewRestController;
 
 import javax.ws.rs.ApplicationPath;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class StreamerApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
-		return new HashSet<Class<?>>(Arrays.asList(FeedRestController.class, ViewRestController.class,
+		return new HashSet<Class<?>>(Arrays.asList(FeedWebsocketController.class, ViewRestController.class,
 				AuthRestController.class));
 	}
 }
