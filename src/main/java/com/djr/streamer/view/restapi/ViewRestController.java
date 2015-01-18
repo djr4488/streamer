@@ -32,7 +32,6 @@ public class ViewRestController {
 				}
 			}
 		};
-		;
 		return Response.ok().entity(streamingOutput).build();
 	}
 }

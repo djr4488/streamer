@@ -2,6 +2,7 @@ package com.djr.streamer.jms;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.jms.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by IMac on 7/27/2014.
  */
+@ApplicationScoped
 public class JMSStream {
 	@Inject
 	private ConnectionFactory connectionFactory;
