@@ -14,10 +14,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class JMSStream {
 	@Inject
 	private ConnectionFactory connectionFactory;
-	@Inject
-	private String userName;
-	@Inject
-	private String password;
+//	@Inject
+//	private String userName;
+//	@Inject
+//	private String password;
 	@Inject
 	private Logger log;
 	private ConcurrentHashMap<String, JMSBean> jmsBeanMap = new ConcurrentHashMap<>();
@@ -39,7 +39,7 @@ public class JMSStream {
 			return jmsBeanMap.get(streamBean.uuid);
 		}
 		synchronized (lock) {
-			Connection c = connectionFactory.createConnection(userName, password);
+			Connection c = connectionFactory.createConnection();
 			c.start();
 			Session s = c.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Destination d = s.createQueue(streamBean.uuid);

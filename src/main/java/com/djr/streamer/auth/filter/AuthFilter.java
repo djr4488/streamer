@@ -14,9 +14,9 @@ import java.io.IOException;
 /**
  * Created by IMac on 7/29/2014.
  */
-@WebFilter(
-		urlPatterns = {"/api/feed/*"}
-)
+//@WebFilter(
+//		urlPatterns = {"/api/feed/*"}
+//)
 public class AuthFilter implements Filter {
 	@Inject
 	private Logger log;

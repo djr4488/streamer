@@ -3,6 +3,7 @@ package com.djr.streamer.cdi;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
@@ -13,16 +14,13 @@ import javax.jms.ConnectionFactory;
  */
 @ApplicationScoped
 public class AMQConnectionFactoryProducer {
-	@Inject
-	private String activeMqUrl;
-	@Inject
-	private String activeMqUser;
-	@Inject
-	private String activeMqPassword;
+	//@Inject
+	private String activeMqUrl = "vm://localhost";
 	@Inject
 	private Logger log;
 
 	@Produces
+	@Default
 	public ConnectionFactory produceConnectionFactory(InjectionPoint ip) {
 		Class<?> injectingClass = ip.getMember().getDeclaringClass();
 		log.debug("getLogger() injectingClass:{}", injectingClass.getName());
